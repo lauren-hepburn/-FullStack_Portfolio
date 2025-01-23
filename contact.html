@@ -13,28 +13,64 @@
   <meta property="og:site_name" content="Lauren Forsyth's Contact Info">
   <meta property="og:locale" content="en_US">
   <title>Lauren D.H. Forsyth</title>
+  <link rel="stylesheet" href="styling.css" media="screen">
   <style media="screen">
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box;}
   </style>
 </head>
-<body>
-  <ul>
-    <li><a href="homepage.html">Home</a></li>
-    <li><a href="projects.html">Projects</a></li>
-    <li><a href="articles.html">Articles</a></li>
-    <li><a href="Resume.html">Resume</a></li>
-    <li><a href="contact.html">Contact</a></li>
-  </ul>
 
-  <div class="Personal_Info">
-    <p>
-      Oklahoma, USA<br>
-      (405) 269-8260<br>
-      <a href="mailto:laurendhforsyth@gmail.com?subject=contact">laurendhforsyth@gmail.com</a>
-    </p>
+<body>
+  <div class="header" align="center" width=100%>
+    <a href="homepage.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="articles.html">Articles</a>
+    <a href="Resume.html">Resume</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="header">
+    <h2>Contact Info</h2>
+  </div>
+
+  <div class="rowequal">
+    <div class="columnequal" style="background-color:#aaa;" align="middle">Oklahoma, USA</div>
+    <div class="columnequal" style="background-color:#bbb;" align="middle">
+      <div class="container">
+        <form action="/action_page.php">
+        <div class="row">
+          <div class="col-25">
+            <label for="fname">First Name</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="fname" name="firstname" placeholder="Your first name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="lname">Last Name</label>
+          </div>
+          <div class="col-75">
+            <input type="text" id="lname" name="lastname" placeholder="Your last name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-25">
+            <label for="subject">Subject</label>
+          </div>
+          <div class="col-75">
+            <textarea id="subject" name="subject" placeholder="Email content" style="height:200px"></textarea>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <input type="submit" value="Submit">
+        </div>
+        </form>
+      </div>
+    </div>
+    <div class="columnequal" style="background-color:#ccc;" align="middle">
+      <a href="mailto:laurendhforsyth@gmail.com?subject=contact">laurendhforsyth@gmail.com</a></div>
+
+  <div class="footer">
+    <p>Please contact me using the information on the contact page.</p>
   </div>
 </body>
