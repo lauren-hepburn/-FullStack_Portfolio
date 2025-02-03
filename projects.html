@@ -14,7 +14,28 @@
   <meta property="og:locale" content="en_US">
   <title>Lauren D.H. Forsyth</title>
   <link rel="stylesheet" href="styling.css" media="screen">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+      /* Responsive layout - makes a two column-layout instead of four columns */
+      @media screen and (max-width: 800px) {
+        .project_columm {
+          flex: 50%;
+          max-width: 50%;
+        }
+      }
+
+      /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+      @media screen and (max-width: 600px) {
+        .project_columm {
+          flex: 100%;
+          max-width: 100%;
+        }
+      }
+  </style>
 </head>
+
 <body>
   <div class="header" align="center" width=100%>
     <a href="homepage.html">Home</a>
@@ -22,5 +43,32 @@
     <a href="articles.html">Articles</a>
     <a href="Resume.html">Resume</a>
     <a href="contact.html">Contact</a>
+  </div>
+
+  <h1 align="middle">Portfolio</h1>
+  <p align="middle">All photos shown are temporary images taken from Pixabay. They will be replaced eventually.</p>
+
+  </div>
+  <div class="project_row">
+    <div class="project_columm">
+      <img src="Assets/Images/autumn.jpg" style="width:100%">
+      <img src="Assets/Images/bird.jpg" style="width:100%">
+      <img src="Assets/Images/forest.jpg" style="width:100%">
+    </div>
+    <div class="project_columm">
+      <img src="Assets/Images/girl-1.jpg" style="width:100%">
+      <img src="Assets/Images/girl-2.jpg" style="width:100%">
+      <img src="Assets/Images/girl-3.png" style="width:100%">
+    </div>
+    <div class="project_columm">
+      <img src="Assets/Images/insect.jpg" style="width:100%">
+      <img src="Assets/Images/night.jpg" style="width:100%">
+      <img src="Assets/Images/rabbit.jpg" style="width:100%">
+    </div>
+    <div class="project_columm">
+      <img src="Assets/Images/autumn.jpg" style="width:100%">
+      <img src="Assets/Images/bird.jpg" style="width:100%">
+      <img src="Assets/Images/forest.jpg" style="width:100%">
+    </div>
   </div>
 </body>
