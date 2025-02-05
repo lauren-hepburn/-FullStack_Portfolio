@@ -14,7 +14,7 @@
   <meta property="og:site_name" content="Lauren Forsyth's Resume">
   <meta property="og:locale" content="en_US">
   <title>Lauren D.H. Forsyth</title>
-  <link rel="stylesheet" href="styling.css" media="screen">
+  <link rel="stylesheet" href="resume.css" media="screen">
 </head>
 <body>
   <div class="header" align="center" width=100%>
@@ -28,15 +28,27 @@
     <h1>Lauren D.H. Forsyth</h1>
     <h4>Junior Frontend Developer</h4>
   </header>
-  <div class="Skills">
-    <h4>Skills</h4>
+
+  <div class="w3-sidebar w3-bar-block w3-black w3-card" style="width:130px">
+    <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Skills')">Skills</button>
+    <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Education')">Education</button>
+    <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Experience')">Experience</button>
+    <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Links')">Links</button>
+  </div>
+
+<div style="margin-left:130px">
+  <div class="w3-padding">Use any of the w3-animate-classes to fade, zoom or slide in tab content.</div>
+
+  <div id="Skills" class="w3-container city w3-animate-right" style="display:none">
+    <h2>Skills</h2>
     <p>
       Unity, Godot, C#, C++, Python, HTML, CSS, JavaScript, Visual Studio<br>
       Webflow, Squarespace, Microsoft Office, JIRA, Asana, Confluence, Teams/Discord/Slack
     </p>
   </div>
-  <div class="Education">
-    <h4>Education</h4>
+
+  <div id="Education" class="w3-container city w3-animate-right" style="display:none">
+    <h2>Education</h2>
     <div class="School">
       <h4 style="color : dodgerblue; margin-bottom: -10px;">Algonquin College, Ottawa, ON - Game Development</h4>
       <p>September 2018 to April 2021</p>
@@ -53,8 +65,9 @@
       </p>
     </div>
   </div>
-  <div class="Experience">
-    <h4>Experience</h4>
+
+  <div id="Experience" class="w3-container city w3-animate-right" style="display:none">
+    <h2>Experience</h2>
     <div class="Job">
       <h4 style="color : dodgerblue; margin-bottom: -10px;">Luxsonic Technologies Inc., Remote - Junior Software Developer</h4>
       <p>December 2024 to August 2024</p>
@@ -90,9 +103,27 @@
       </ul>
     </div>
   </div>
-  <div class="Links">
-    <h4>Across the Internet</h4>
+
+  <div id="Links" class="w3-container city w3-animate-right" style="display:none">
+    <h2>Links</h2>
     <a href="https://github.com/lauren-hepburn">GitHub</a><br>
     <a href="https://www.linkedin.com/in/lauren-dh-forsyth/">LinkedIn</a>
   </div>
+</div>
+
+<script>
+function openLink(evt, animName) {
+  var i, x, tablinks;
+  x = document.getElementsByClassName("city");
+  for (i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablink");
+  for (i = 0; i < x.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
+  }
+  document.getElementById(animName).style.display = "block";
+  evt.currentTarget.className += " w3-red";
+}
+</script>
 </body>
