@@ -33,6 +33,7 @@
           max-width: 100%;
         }
       }
+
   </style>
   <script src="javascript_code.js" defer></script>
 </head>
@@ -62,11 +63,18 @@
         </form>
       </div>
       <div id="cookie_consent_banner" style="display: none;">
+        <h2>Cookie Consent UI</h2>
         <p>This website does not use cookies to improve your experience. This is a showcase of cookie consent usage for demonstration purposes.</p>
         <button id="accept-cookies" type="button" name="button">Accept Cookies</button>
         <button id="reject-cookies" type="button" name="button">Reject Cookies</button>
       </div>
-      <img src="Assets/Images/bird.jpg" style="width:100%">
+      <div id="age_calculator">
+        <h2>Age Calculator</h2>
+        <p>Please enter your birth date: </p>
+        <input type="date" id="calculate_age_birthday" name="calculate_age_birthday">
+        <button id="calculate_age" type="button" name="button">Calculate Age</button>
+        <p id='age_text_response'>You are _ years, _ months, and _ days old.</p>
+      </div>
       <img src="Assets/Images/forest.jpg" style="width:100%">
     </div>
     <div class="project_columm">
