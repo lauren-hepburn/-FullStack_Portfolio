@@ -70,6 +70,103 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('age_text_response').innerText = 'You are ' + years + ' year(s), ' + months + ' month(s), and ' + days + ' day(s) old.'
   })
+
+
+  //GIthub Random Repo code
+  const github_button = document.getElementById('rand_repo_button');
+  let github_output = document.getElementById('repo_output');
+
+  async function getRandomRepo() {
+    github_output.textContent = 'Loading...';
+
+    try {
+      // Search for popular public repos with >1000 stars
+      const page = Math.floor(Math.random() * 10) + 1;
+      const response = await fetch(`https://api.github.com/search/repositories?q=stars:%3E1000&sort=stars&order=desc&page=${page}&per_page=30`);
+
+      if (!response.ok) throw new Error('API error');
+
+      const data = await response.json();
+      const repos = data.items;
+
+      if (repos.length > 0) {
+        const randomRepo = repos[Math.floor(Math.random() * repos.length)];
+        output.innerHTML = `
+          <a href="${randomRepo.html_url}" target="_blank">${randomRepo.full_name}</a><br>
+          ⭐ ${randomRepo.stargazers_count}<br>
+          ${randomRepo.description || 'No description'}
+        `;
+      } else {
+        github_output.textContent = 'No repositories found.';
+      }
+    } catch (error) {
+      console.error(error);
+      github_output.textContent = 'Failed to load repository.';
+    }
+  }
+
+  github_button.addEventListener('click', getRandomRepo);
+
+  //TASK TRACKER CODE
+  // Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function () {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function (ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+// Create a new list item when clicking on the "Add" button
+const task_tracker_add_button = document.getElementById("task_button");
+task_tracker_add_button.addEventListener('click', newElement);
+
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("task_input").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("task_input").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function () {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+
+
 });
 
 
