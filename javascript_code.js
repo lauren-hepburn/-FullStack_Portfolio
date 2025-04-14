@@ -170,6 +170,38 @@ function newElement() {
 });
 
 
+// TEMPERATURE CONVERTER
+var fah_input = document.getElementById("temp_converter_input_fah");
+const fah_button = document.getElementById("temp_converter_button_fah");
+var to_cel = document.getElementById("fah_to_cel");
+
+var cel_input = document.getElementById("temp_converter_input_cel");
+const cel_button = document.getElementById("temp_converter_button_cel");
+var to_fah = document.getElementById("cel_to_fah");
+
+fah_button.addEventListener('click', convertToCelcius);
+cel_button.addEventListener('click', convertToFahrenheit);
+
+function convertToCelcius() {
+  if (fah_input.value.trim() == "") {
+    to_cel.textContent = "You must enter a numerical value!"
+  } else {
+    let fahrenheitValue = Number(fah_input.value);
+    let converted = (fahrenheitValue - 32) * 5 / 9;
+    to_cel.textContent = `${fah_input.textContent} Fahreinheit in Celcius is ${converted.toFixed(0)}.`;
+  }
+}
+
+function convertToFahrenheit() {
+  if (cel_input.value.trim() == "") {
+    to_fah.textContent = "You must enter a numerical value!"
+  } else {
+    let celciusValue = Number(cel_input.value);
+    let converted = (celciusValue * 9 / 5) + 32;
+    to_fah.textContent = `${cel_input.textContent} Celcius in Fahrenheit is ${converted.toFixed(0)}.`;
+  }
+}
+
 
 function getDaysInMonth(year, month)
 {
