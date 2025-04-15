@@ -162,48 +162,133 @@ function newElement() {
     close[i].onclick = function () {
       var div = this.parentElement;
       div.style.display = "none";
+      }
     }
   }
-}
+
+  // TEMPERATURE CONVERTER
+  var fah_input = document.getElementById("temp_converter_input_fah");
+  const fah_button = document.getElementById("temp_converter_button_fah");
+  var to_cel = document.getElementById("fah_to_cel");
+
+  var cel_input = document.getElementById("temp_converter_input_cel");
+  const cel_button = document.getElementById("temp_converter_button_cel");
+  var to_fah = document.getElementById("cel_to_fah");
+
+  fah_button.addEventListener('click', convertToCelcius);
+  cel_button.addEventListener('click', convertToFahrenheit);
+
+  function convertToCelcius() {
+    if (fah_input.value.trim() == "") {
+      to_cel.textContent = "You must enter a numerical value!"
+    } else {
+      let fahrenheitValue = Number(fah_input.value);
+      let converted = (fahrenheitValue - 32) * 5 / 9;
+      to_cel.textContent = `${fah_input.textContent} Fahreinheit in Celcius is ${converted.toFixed(0)}.`;
+    }
+  }
+
+  function convertToFahrenheit() {
+    if (cel_input.value.trim() == "") {
+      to_fah.textContent = "You must enter a numerical value!"
+    } else {
+      let celciusValue = Number(cel_input.value);
+      let converted = (celciusValue * 9 / 5) + 32;
+      to_fah.textContent = `${cel_input.textContent} Celcius in Fahrenheit is ${converted.toFixed(0)}.`;
+    }
+  }
+
+
+  function getDaysInMonth(year, month)
+  {
+    return new Date(year, month, 0).getDate();
+  }
+
+
+  //POMODORO TIMER
+  let timerDisplay = document.getElementById('pomo_timer');
+  let startButton = document.getElementById('pomo_start');
+  let resetButton = document.getElementById('pomo_reset');
+  let pauseButton = document.getElementById('pomo_pause');
+
+  let workTime = 25 * 60; // 25 minutes in seconds
+  let breakTime = 5 * 60; // 5 minutes in seconds
+  let currentTime = workTime;
+  let isRunning = false;
+  let isPaused = false;
+  let interval;
+
+  function updateTimerDisplay(seconds) {
+      let minutes = Math.floor(seconds / 60);
+      let remainingSeconds = seconds % 60;
+      timerDisplay.textContent = `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+  }
+
+  function startTimer() {
+    console.log("Starting timer");
+      if (!isRunning) {
+          isRunning = true;
+          isPaused = false;
+          interval = setInterval(() => {
+              if (currentTime > 0) {
+                  currentTime--;
+                  updateTimerDisplay(currentTime);
+              } else {
+                  clearInterval(interval);
+                  isRunning = false;
+                  alert('Time is up!');
+                  // Switch between work and break time
+                  currentTime = (currentTime === workTime) ? breakTime : workTime;
+                  updateTimerDisplay(currentTime);
+              }
+          }, 1000);
+      }
+  }
+
+  function resetTimer() {
+    clearInterval(interval);
+    isRunning = false;
+    isPaused = false;
+    currentTime = workTime;
+    updateTimerDisplay(currentTime);
+    pauseButton.textContent = 'Pause'; // Reset button text
+  }
+
+  function togglePause() {
+    if (isRunning) {
+        if (isPaused) {
+            // Resume the timer
+            isPaused = false;
+            pauseButton.textContent = 'Pause';
+            interval = setInterval(() => {
+                if (currentTime > 0) {
+                    currentTime--;
+                    updateTimerDisplay(currentTime);
+                } else {
+                    clearInterval(interval);
+                    isRunning = false;
+                    alert('Time is up!');
+                    // Switch between work and break time
+                    currentTime = (currentTime === workTime) ? breakTime : workTime;
+                    updateTimerDisplay(currentTime);
+                }
+            }, 1000);
+        } else {
+            // Pause the timer
+            isPaused = true;
+            pauseButton.textContent = 'Play';
+            clearInterval(interval);
+        }
+    }
+  }
+
+
+  startButton.addEventListener('click', startTimer);
+  resetButton.addEventListener('click', resetTimer);
+  pauseButton.addEventListener('click', togglePause);
+
+  // Initialize display
+  updateTimerDisplay(currentTime);
 
 
 });
-
-
-// TEMPERATURE CONVERTER
-var fah_input = document.getElementById("temp_converter_input_fah");
-const fah_button = document.getElementById("temp_converter_button_fah");
-var to_cel = document.getElementById("fah_to_cel");
-
-var cel_input = document.getElementById("temp_converter_input_cel");
-const cel_button = document.getElementById("temp_converter_button_cel");
-var to_fah = document.getElementById("cel_to_fah");
-
-fah_button.addEventListener('click', convertToCelcius);
-cel_button.addEventListener('click', convertToFahrenheit);
-
-function convertToCelcius() {
-  if (fah_input.value.trim() == "") {
-    to_cel.textContent = "You must enter a numerical value!"
-  } else {
-    let fahrenheitValue = Number(fah_input.value);
-    let converted = (fahrenheitValue - 32) * 5 / 9;
-    to_cel.textContent = `${fah_input.textContent} Fahreinheit in Celcius is ${converted.toFixed(0)}.`;
-  }
-}
-
-function convertToFahrenheit() {
-  if (cel_input.value.trim() == "") {
-    to_fah.textContent = "You must enter a numerical value!"
-  } else {
-    let celciusValue = Number(cel_input.value);
-    let converted = (celciusValue * 9 / 5) + 32;
-    to_fah.textContent = `${cel_input.textContent} Celcius in Fahrenheit is ${converted.toFixed(0)}.`;
-  }
-}
-
-
-function getDaysInMonth(year, month)
-{
-  return new Date(year, month, 0).getDate();
-}
