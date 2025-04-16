@@ -318,3 +318,10 @@ h2 {
 #task_tracker .addBtn:hover {
   background-color: #bbb;
 }
+
+.canvas_project .canvas {
+  border: 1px solid #000000;
+  border-radius: 1px;
+  width: 100%;
+  height: auto;
+}

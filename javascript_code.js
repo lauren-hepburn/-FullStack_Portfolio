@@ -291,4 +291,35 @@ function newElement() {
   updateTimerDisplay(currentTime);
 
 
+  //CANVAS ELEMENT IN PROJECTS
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext('2d');
+
+
+  // 🌸 Light pink gradient background
+  const bgGradient = ctx.createLinearGradient(0 , 0, 0, canvas.height);
+  bgGradient.addColorStop(0, '#ffe6f0'); // Light pink top
+  bgGradient.addColorStop(1, '#ffd6ec'); // Slightly deeper pink bottom
+  ctx.fillStyle = bgGradient;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // 🌈 Rainbow text gradient
+  const textGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+  textGradient.addColorStop(0, "red");
+  textGradient.addColorStop(0.17, "orange");
+  textGradient.addColorStop(0.34, "yellow");
+  textGradient.addColorStop(0.51, "green");
+  textGradient.addColorStop(0.68, "blue");
+  textGradient.addColorStop(0.85, "indigo");
+  textGradient.addColorStop(1, "violet");
+
+  // Set text style
+  ctx.font = "bold 40px sans-serif";
+  ctx.fillStyle = textGradient;
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+
+  // ✨ Draw text in the center
+  ctx.fillText("Hello world!", canvas.width / 2, canvas.height / 2);
+
 });
