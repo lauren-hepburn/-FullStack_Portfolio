@@ -116,9 +116,22 @@
     </div>
     <div class="project_columm">
       <div class="canvas_project">
+        <h2>Canvas Drawing - Not Interactable</h2>
         <canvas class="canvas" id="canvas"></canvas>
       </div>
-      <img src="Assets/Images/night.jpg" style="width:100%">
+      <div class="timer">
+        <h2>Countdown Timer</h2>
+        <label for="hours">Hours:</label>
+        <input type="number" id="hours" min="0" value="0"><br>
+        <label for="minutes">Minutes:</label>
+        <input type="number" id="minutes" min="0" value="0"><br>
+        <label for="seconds">Seconds:</label>
+        <input type="number" id="seconds" min="0" value="0"><br>
+        <button id="timer_button">Start Timer</button>
+
+        <div id="timer">00:00:00</div>
+
+      </div>
       <img src="Assets/Images/rabbit.jpg" style="width:100%">
     </div>
     <div class="project_columm">

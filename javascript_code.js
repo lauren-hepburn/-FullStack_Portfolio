@@ -322,4 +322,37 @@ function newElement() {
   // ✨ Draw text in the center
   ctx.fillText("Hello world!", canvas.width / 2, canvas.height / 2);
 
+
+  const timerButton = document.getElementById('timer_button');
+  timerButton.addEventListener('click', startTimer);
+  // COUNTDOWN TIMER
+  function startTimer() {
+    const hoursInput = document.getElementById('hours').value;
+    const minutesInput = document.getElementById('minutes').value;
+    const secondsInput = document.getElementById('seconds').value;
+
+    let totalSeconds = parseInt(hoursInput) * 3600 + parseInt(minutesInput) * 60 + parseInt(secondsInput);
+
+    if (totalSeconds == 0) {
+      alert('You must enter a value above zero!');
+    } else {
+      const timerDisplay = document.getElementById('timer');
+
+      const interval = setInterval(() => {
+          const hours = Math.floor(totalSeconds / 3600);
+          const minutes = Math.floor((totalSeconds % 3600) / 60);
+          const seconds = totalSeconds % 60;
+
+          timerDisplay.textContent =
+              `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+
+          if (totalSeconds <= 0) {
+              clearInterval(interval);
+              alert('Timer is done!');
+          }
+
+          totalSeconds--;
+      }, 1000);
+    }
+  }
 });
