@@ -325,3 +325,27 @@ h2 {
   width: 100%;
   height: auto;
 }
+
+#expense_tracker form {
+  margin-bottom: 1rem;
+}
+#expense_tracker input, #expense_tracker select, #expense_tracker button {
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  display: block;
+  width: 100%;
+}
+#expense_tracker ul {
+  list-style: none;
+  padding: 0;
+}
+#expense_tracker li {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ccc;
+}
+#expense_tracker canvas {
+  margin-top: 2rem;
+  width: 100%;
+  height: 200px;
+  border: 1px solid #ccc;
+}

@@ -355,4 +355,91 @@ function newElement() {
       }, 1000);
     }
   }
+
+  //EXPENSE TRACKER
+  const form = document.getElementById('expense-form');
+  const amountInput = document.getElementById('amount');
+  const categoryInput = document.getElementById('category');
+  const expenseList = document.getElementById('expense-list');
+  const expense_canvas = document.getElementById('chart');
+  const expense_ctx = expense_canvas.getContext('2d');
+
+  let expenses = [];
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const amount = parseFloat(amountInput.value);
+    const category = categoryInput.value;
+
+    if (!isNaN(amount) && category) {
+      expenses.push({ amount, category });
+      amountInput.value = '';
+      updateUI();
+    }
+  });
+
+  function updateUI() {
+    // 1. Update expense list
+    expenseList.innerHTML = '';
+    expenses.forEach(exp => {
+      const li = document.createElement('li');
+      li.textContent = `$${exp.amount.toFixed(2)} - ${exp.category}`;
+      expenseList.appendChild(li);
+    });
+
+    // 2. Update chart
+    updateChart();
+  }
+
+  function updateChart() {
+    expense_ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const categoryTotals = {};
+    let total = 0;
+
+    expenses.forEach(({ amount, category }) => {
+      total += amount;
+      categoryTotals[category] = (categoryTotals[category] || 0) + amount;
+    });
+
+    let startAngle = 0;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = Math.min(centerX, centerY) - 10;
+
+    Object.entries(categoryTotals).forEach(([category, amount]) => {
+      const sliceAngle = (amount / total) * 2 * Math.PI;
+
+      // Draw slice
+      expense_ctx.beginPath();
+      expense_ctx.moveTo(centerX, centerY);
+      expense_ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
+      expense_ctx.closePath();
+      expense_ctx.fillStyle = getColor(category);
+      expense_ctx.fill();
+
+      // Add label
+      const midAngle = startAngle + sliceAngle / 2;
+      const labelX = centerX + Math.cos(midAngle) * (radius / 1.5);
+      const labelY = centerY + Math.sin(midAngle) * (radius / 1.5);
+      expense_ctx.fillStyle = "#000";
+      expense_ctx.textAlign = "center";
+      expense_ctx.font = "12px sans-serif";
+      expense_ctx.fillText(category, labelX, labelY);
+
+      startAngle += sliceAngle;
+    });
+  }
+
+  function getColor(category) {
+    const colors = {
+      Food: "#FF6384",
+      Transport: "#36A2EB",
+      Entertainment: "#FFCE56",
+      Bills: "#4BC0C0",
+      Other: "#9966FF"
+    };
+    return colors[category] || "#ccc";
+  }
 });
